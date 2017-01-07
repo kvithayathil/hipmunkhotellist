@@ -28,7 +28,7 @@ ext.versions = [
         okHttp: '3.5.0',
         retrofit: '2.1.0',
         butterKnife: '8.4.0',
-        timber: '4.1.2',
+        timber: '4.4.0',
         espresso: '2.2.2',
         stetho: '1.4.1',
         leakCanary: '1.4',
