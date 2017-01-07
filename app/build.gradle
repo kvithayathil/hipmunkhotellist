@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
 
 android {
     compileSdkVersion versions.compileSdk
@@ -36,6 +38,13 @@ dependencies {
     compile libraries.okHttp
     compile libraries.okHttpUrlConnection
     compile libraries.okHttpLoggingInterceptor
+
+    //Domain/Business dependencies
+    apt libraries.autoValue
+    provided libraries.autoValue
+
+    //Debugging/Developer
+    compile libraries.timber
 
 
     //Testing

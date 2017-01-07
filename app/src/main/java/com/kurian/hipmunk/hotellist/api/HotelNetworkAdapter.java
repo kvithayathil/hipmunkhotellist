@@ -33,6 +33,7 @@ public class HotelNetworkAdapter {
 
         instance = new Retrofit.Builder()
                 .client(client)
+                .baseUrl("https://hipmunk.com/mobile/")
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build();
     }
