@@ -3,6 +3,8 @@ package com.kurian.hipmunk.hotellist.api;
 import com.kurian.hipmunk.hotellist.BuildConfig;
 import com.squareup.moshi.Moshi;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -19,6 +21,8 @@ public class HotelNetworkAdapter {
     public HotelNetworkAdapter() {
 
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+
+
         if (BuildConfig.DEBUG) {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         } else {
@@ -26,6 +30,8 @@ public class HotelNetworkAdapter {
         }
 
         final OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(logging)
                 .build();
 

@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference;
  * Created by Kurian on 07/01/2017.
  */
 
-public class BasePresenter<V extends MvpView> {
+public abstract class BasePresenter<V extends MvpView> {
 
     private WeakReference<V> viewRef;
 
@@ -28,4 +28,6 @@ public class BasePresenter<V extends MvpView> {
     public V getView() {
         return viewRef.get();
     }
+
+    public abstract void onDestroy();
 }

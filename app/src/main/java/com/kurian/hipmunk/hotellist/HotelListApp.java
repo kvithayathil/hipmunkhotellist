@@ -21,7 +21,7 @@ public class HotelListApp extends Application {
     }
 
     public HotelNetworkAdapter providesNetworkAdapter() {
-        if(hotelNetworkAdapter != null) {
+        if(hotelNetworkAdapter == null) {
             hotelNetworkAdapter = new HotelNetworkAdapter();
         }
 

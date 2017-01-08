@@ -31,6 +31,10 @@ dependencies {
     compile libraries.supportDesign
     compile libraries.supportAnnotations
 
+    //UI
+    compile libraries.glide
+    compile libraries.glideOkhttp3
+
     //Networking dependencies
     compile libraries.moshi
     compile libraries.retrofit

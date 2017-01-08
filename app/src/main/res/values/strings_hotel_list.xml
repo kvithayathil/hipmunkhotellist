@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="progress_text">@string/loading_hotels</string>
+    <string name="empty_list">@string/no_results_found</string>
+</resources>

@@ -1,28 +1,23 @@
 package com.kurian.hipmunk.hotellist.domain;
 
-import com.kurian.hipmunk.hotellist.api.HotelApiService;
-import com.kurian.hipmunk.hotellist.api.HotelNetworkAdapter;
-import com.kurian.hipmunk.hotellist.api.HotelResponse;
-import com.kurian.hipmunk.hotellist.ui.HotelListView;
+import com.kurian.hipmunk.hotellist.ui.hotelslistscreen.HotelListView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 /**
  * Created by Kurian on 07/01/2017.
  */
 
-public class HotelListPresenter extends BasePresenter<HotelListView> {
+public class HotelListPresenter extends BasePresenter<HotelListView>
+        implements HotelDataManager.OnLoadListener {
 
-    private final HotelApiService apiService;
+    private final HotelDataManager dataManager;
+    private List<HotelItem> hotelItemsCache;
 
-    public HotelListPresenter(HotelNetworkAdapter adapter){
-        this.apiService = adapter.getNetworkService(HotelApiService.class);
+    public HotelListPresenter(HotelDataManager dataManager) {
+        this.dataManager = dataManager;
+        this.hotelItemsCache = new ArrayList<>();
     }
 
 
@@ -30,43 +25,30 @@ public class HotelListPresenter extends BasePresenter<HotelListView> {
      * Fetch hotel list from the api service, convert then supply the result to the attached view
      */
     public void getHotels() {
-        apiService.fetchHotels()
-                .enqueue(new Callback<HotelResponse.Container>() {
-                    @Override
-                    public void onResponse(Call<HotelResponse.Container> call,
-                                           Response<HotelResponse.Container> response) {
-                        //Response could be successful (200-300) or an error (400-500)
-                        if(response.isSuccessful()) {
-
-                            List<HotelItem> hotelItems = new ArrayList<>();
-
-                            for(HotelResponse hotelResponse: response.body().hotels) {
-                                hotelItems.add(HotelItem.builder()
-                                        .hotelName(hotelResponse.hotelName)
-                                        .imageUrl(hotelResponse.imageUrl)
-                                        .build());
-                            }
-
-                            if(isViewBound()) {
-                                getView().updateHotelList(hotelItems);
-                            }
-
-                        } else {
-                            if(isViewBound()) {
-                                getView().showErrorMessage(response.message());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<HotelResponse.Container> call, Throwable t) {
-                        //Failed to connect to the server (e.g. no internet connection)
-                        Timber.e(t);
-                        getView().showErrorMessage(t.getMessage());
-                    }
-                });
-
+        if(isViewBound()) {
+            getView().showLoading(true);
+        }
+        dataManager.loadData(this);
     }
 
+    @Override
+    public void onLoad(List<HotelItem> items) {
+        if(isViewBound()) {
+            getView().updateHotelList(items);
+            getView().showLoading(dataManager.isLoadingFromNetwork());
+        }
+    }
 
+    @Override
+    public void onError(String message) {
+        if(isViewBound()) {
+            getView().showErrorMessage(message);
+            getView().showLoading(false);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        hotelItemsCache.clear();
+    }
 }
