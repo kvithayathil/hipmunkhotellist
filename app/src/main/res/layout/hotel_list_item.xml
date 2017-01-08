@@ -3,25 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id_hotel_card"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    android:layout_height="@dimen/list_item_height"
+    android:layout_margin="@dimen/list_item_padding">
 
         <ImageView
             android:id="@+id/id_hotel_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:scaleType="centerCrop"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/id_hotel_name"
-            android:paddingTop="24dp"
-            android:paddingBottom="24dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:background="@drawable/hotel_item_gradient"
-            android:textColor="@color/cardview_light_background"
-            style="@style/TextAppearance.AppCompat.Headline"
+            android:paddingTop="@dimen/list_item_text_padding_top"
+            android:paddingBottom="@dimen/list_item_text_padding_bottom"
+            android:paddingLeft="@dimen/list_item_text_padding_left"
+            android:paddingRight="@dimen/list_item_text_padding_right"
+            style="@style/HotelListItemText"
+            android:minHeight="@dimen/list_item_text_min_height"
             android:layout_gravity="bottom"
-            android:minHeight="72dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

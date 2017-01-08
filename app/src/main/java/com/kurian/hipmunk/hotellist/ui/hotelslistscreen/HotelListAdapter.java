@@ -1,7 +1,6 @@
 package com.kurian.hipmunk.hotellist.ui.hotelslistscreen;
 
 import android.content.Context;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kurian.hipmunk.hotellist.R;
 import com.kurian.hipmunk.hotellist.domain.HotelItem;
 
@@ -26,6 +26,8 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
     private List<HotelItem> hotelItems;
     private LayoutInflater layoutInflater;
 
+    private OnListItemClickListener clickListener;
+
     public HotelListAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         hotelItems = new ArrayList<>();
@@ -40,7 +42,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
 
     @Override
     public void onBindViewHolder(HotelItemViewHolder holder, int position) {
-        holder.bindView(hotelItems.get(position));
+        holder.bindView(hotelItems.get(position), clickListener);
     }
 
     public void updateList(List<HotelItem> hotelItems) {
@@ -54,9 +56,17 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
         notifyDataSetChanged();
     }
 
+    public void setClickListener(OnListItemClickListener l) {
+        this.clickListener = l;
+    }
+
     @Override
     public int getItemCount() {
         return hotelItems.size();
+    }
+
+    interface OnListItemClickListener {
+        void onItemClicked(HotelItem item);
     }
 
     static class HotelItemViewHolder extends RecyclerView.ViewHolder {
@@ -73,12 +83,23 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             requestManager = Glide.with(view.getContext());
         }
 
-        public void bindView(HotelItem hotel) {
+        public void bindView(final HotelItem hotel, final OnListItemClickListener l) {
             hotelName.setText(hotel.hotelName());
             requestManager
                     .load(hotel.imageUrl())
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(hotelImage);
+
+            if(l != null) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        l.onItemClicked(hotel);
+                    }
+                });
+            }
+
         }
     }
 }

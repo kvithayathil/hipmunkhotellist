@@ -1,11 +1,9 @@
 package com.kurian.hipmunk.hotellist.ui.hotelslistscreen;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +18,7 @@ import com.kurian.hipmunk.hotellist.domain.HotelItem;
 import com.kurian.hipmunk.hotellist.domain.HotelListPresenter;
 import com.kurian.hipmunk.hotellist.domain.PresenterFactory;
 import com.kurian.hipmunk.hotellist.ui.base.BasePresenterFragment;
+import com.kurian.hipmunk.hotellist.ui.hoteldetailscreen.HotelDetailFragment;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ import java.util.List;
  */
 
 public class HotelListFragment extends BasePresenterFragment<HotelListPresenter, HotelListView>
-        implements HotelListView {
+        implements HotelListView, HotelListAdapter.OnListItemClickListener {
 
     private static final String TAG = HotelListFragment.class.getCanonicalName();
 
@@ -51,8 +50,9 @@ public class HotelListFragment extends BasePresenterFragment<HotelListPresenter,
                              @Nullable Bundle savedInstanceState) {
 
         adapter = new HotelListAdapter(getContext());
+        adapter.setClickListener(this);
 
-        View view = inflater.inflate(R.layout.hotel_list_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_hotel_list, container, false);
 
         loadingMessage = (TextView) view.findViewById(R.id.id_empty_list);
 
@@ -135,13 +135,12 @@ public class HotelListFragment extends BasePresenterFragment<HotelListPresenter,
             } else {
                 loadingMessage.setText(R.string.empty_list);
             }
+            refreshLayout.setRefreshing(toggle);
 
             loadingMessage.setVisibility(View.VISIBLE);
         } else {
             loadingMessage.setVisibility(View.GONE);
         }
-
-        refreshLayout.setRefreshing(toggle);
     }
 
     @Override
@@ -158,5 +157,14 @@ public class HotelListFragment extends BasePresenterFragment<HotelListPresenter,
     @Override
     protected void onPresenterPrepared(HotelListPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void onItemClicked(HotelItem item) {
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.activity_main, HotelDetailFragment.newInstance(item))
+                .addToBackStack(HotelDetailFragment.class.getCanonicalName())
+                .commit();
     }
 }

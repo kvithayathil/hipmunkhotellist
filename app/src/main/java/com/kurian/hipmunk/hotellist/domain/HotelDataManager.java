@@ -45,7 +45,8 @@ public class HotelDataManager {
         memCache = cache.getLocalData();
 
         //Make sure we don't hammer the endpoint too much
-        if(System.currentTimeMillis() - lastNetworkPull > NETWORKPULL_DELAY) {
+        if(System.currentTimeMillis() - lastNetworkPull > NETWORKPULL_DELAY
+                && !isLoadingFromNetwork) {
             isLoadingFromNetwork = true;
             apiService.fetchHotels()
                     .enqueue(new Callback<HotelResponse.Container>() {
