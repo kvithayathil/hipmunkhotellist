@@ -49,6 +49,7 @@ dependencies {
 
     //Debugging/Developer
     compile libraries.timber
+    debugCompile libraries.leakCanary
 
 
     //Testing

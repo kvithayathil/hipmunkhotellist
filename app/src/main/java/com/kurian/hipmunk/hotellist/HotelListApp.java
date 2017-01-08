@@ -3,6 +3,7 @@ package com.kurian.hipmunk.hotellist;
 import android.app.Application;
 
 import com.kurian.hipmunk.hotellist.api.HotelNetworkAdapter;
+import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
 
@@ -18,6 +19,11 @@ public class HotelListApp extends Application {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+
+        LeakCanary.install(this);
     }
 
     public HotelNetworkAdapter providesNetworkAdapter() {
