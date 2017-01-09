@@ -4,7 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.text.TextUtils;
 
-import com.kurian.hipmunk.hotellist.domain.HotelItem;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 
 import java.util.List;
 

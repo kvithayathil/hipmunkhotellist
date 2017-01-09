@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kurian.hipmunk.hotellist.R;
-import com.kurian.hipmunk.hotellist.domain.HotelItem;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 
 /**
  * Created by Kurian on 08/01/2017.

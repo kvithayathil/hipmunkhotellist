@@ -1,6 +1,6 @@
 package com.kurian.hipmunk.hotellist.ui.hotelslistscreen;
 
-import com.kurian.hipmunk.hotellist.domain.HotelItem;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 import com.kurian.hipmunk.hotellist.ui.MvpView;
 
 import java.util.List;

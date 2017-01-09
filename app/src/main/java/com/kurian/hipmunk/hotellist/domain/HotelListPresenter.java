@@ -1,5 +1,6 @@
 package com.kurian.hipmunk.hotellist.domain;
 
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 import com.kurian.hipmunk.hotellist.ui.hotelslistscreen.HotelListView;
 
 import java.util.ArrayList;

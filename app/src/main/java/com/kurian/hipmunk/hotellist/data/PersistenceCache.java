@@ -1,4 +1,6 @@
-package com.kurian.hipmunk.hotellist.domain;
+package com.kurian.hipmunk.hotellist.data;
+
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 
 import java.util.List;
 

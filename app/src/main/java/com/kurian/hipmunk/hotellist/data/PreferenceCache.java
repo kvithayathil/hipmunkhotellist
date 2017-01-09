@@ -1,4 +1,4 @@
-package com.kurian.hipmunk.hotellist.domain;
+package com.kurian.hipmunk.hotellist.data;
 
 import android.content.SharedPreferences;
 

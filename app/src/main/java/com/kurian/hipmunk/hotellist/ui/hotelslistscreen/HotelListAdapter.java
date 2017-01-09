@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kurian.hipmunk.hotellist.R;
-import com.kurian.hipmunk.hotellist.domain.HotelItem;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 
 import java.util.ArrayList;
 import java.util.List;

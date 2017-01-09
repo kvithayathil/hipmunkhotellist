@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.kurian.hipmunk.hotellist.HotelListApp;
 import com.kurian.hipmunk.hotellist.R;
-import com.kurian.hipmunk.hotellist.domain.HotelItem;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
 import com.kurian.hipmunk.hotellist.domain.HotelListPresenter;
 import com.kurian.hipmunk.hotellist.domain.PresenterFactory;
 import com.kurian.hipmunk.hotellist.ui.base.BasePresenterFragment;

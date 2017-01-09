@@ -3,6 +3,8 @@ package com.kurian.hipmunk.hotellist.domain;
 import com.kurian.hipmunk.hotellist.api.HotelApiService;
 import com.kurian.hipmunk.hotellist.api.HotelNetworkAdapter;
 import com.kurian.hipmunk.hotellist.api.HotelResponse;
+import com.kurian.hipmunk.hotellist.data.HotelItem;
+import com.kurian.hipmunk.hotellist.data.PersistenceCache;
 
 import java.util.ArrayList;
 import java.util.List;

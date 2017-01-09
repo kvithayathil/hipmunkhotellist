@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import com.kurian.hipmunk.hotellist.api.HotelNetworkAdapter;
 import com.kurian.hipmunk.hotellist.domain.HotelDataManager;
 import com.kurian.hipmunk.hotellist.domain.HotelListPresenter;
-import com.kurian.hipmunk.hotellist.domain.PreferenceCache;
+import com.kurian.hipmunk.hotellist.data.PreferenceCache;
 import com.kurian.hipmunk.hotellist.domain.PresenterFactory;
 
 /**

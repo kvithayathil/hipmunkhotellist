@@ -1,6 +1,7 @@
-package com.kurian.hipmunk.hotellist.domain;
+package com.kurian.hipmunk.hotellist.data;
 
 import com.google.auto.value.AutoValue;
+import com.kurian.hipmunk.hotellist.domain.AutoValue_HotelItem;
 
 /**
  * A separate domain object to supply to the UI
@@ -22,7 +23,6 @@ public abstract class HotelItem {
     public abstract Builder toBuilder();
 
     public static Builder builder() {
-        return new AutoValue_HotelItem
-                .Builder();
+        return new AutoValue_HotelItem.Builder();
     }
 }
