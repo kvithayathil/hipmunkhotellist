@@ -1,7 +1,6 @@
 package com.kurian.hipmunk.hotellist.data;
 
 import com.google.auto.value.AutoValue;
-import com.kurian.hipmunk.hotellist.domain.AutoValue_HotelItem;
 
 /**
  * A separate domain object to supply to the UI
